@@ -1,24 +1,25 @@
-import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navigation from "./Components/Navigation";
-import Home from "./Components/Home";
-import DashBoard from "./Components/DashBoard";
-import "./App.css";
+import { NotesProvider } from "./context/NotesContext";
+import Header from "./Components/Header";
+import Home from "./Pages/Home";
+import CreateNote from "./Pages/CreateNote";
+import NoteDetail from "./Pages/NoteDetail";
 
-const App = () => {
+function App() {
   return (
-    <Router>
-      <div className="app-container">
-        <Navigation />
-        <main className="main-content">
+    <NotesProvider>
+      <Router>
+        <div className="min-h-screen">
+          <Header />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/dashboard" element={<DashBoard />} />
+            <Route path="/create" element={<CreateNote />} />
+            <Route path="/note/:id" element={<NoteDetail />} />
           </Routes>
-        </main>
-      </div>
-    </Router>
+        </div>
+      </Router>
+    </NotesProvider>
   );
-};
+}
 
 export default App;
